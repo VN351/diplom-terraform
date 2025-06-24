@@ -12,7 +12,7 @@ locals {
   
   metadata = {
         "serial-port-enable" = "1"
-        "ssh-keys"           = "${var.ssh_username}:${file(var.vms_ssh_root_key)}"
+        "ssh-keys"           = "${var.ssh_username}:${var.vms_ssh_root_key}"
     }
   
   k8s_nodes_ip = [for vm in values(yandex_compute_instance.instances) : vm.network_interface[0].nat_ip_address]
