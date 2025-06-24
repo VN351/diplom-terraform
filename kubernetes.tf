@@ -1,7 +1,7 @@
 resource "yandex_compute_instance" "instances" {
   for_each    = { for idx, instance in local.instances : instance.name => instance }
   name        = each.value.name
-  platform_id = var.platform_id.pi2
+  platform_id = var.platform_id.pi3
   zone        = each.value.zone
   service_account_id = yandex_iam_service_account.vlad_sa.id
 
