@@ -1,4 +1,8 @@
 locals {
+    roles = [
+    "storage.admin",
+    "editor"
+  ]
   
   instances = [
     { name = "k8s-master", zone = "ru-central1-a", subnet = "subnet-1", cores = 2, memory = 4,size = 15 },
