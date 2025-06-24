@@ -64,7 +64,6 @@ variable "vm_os_family" {
 variable "vms_ssh_root_key" {
   description = "Путь к публичному SSH ключу"
   type        = string
-  default     = "/home/vlad/.ssh/id_ed25519.pub"
 }
 
 variable "ssh_username" {
