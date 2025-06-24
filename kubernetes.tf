@@ -3,7 +3,7 @@ resource "yandex_compute_instance" "instances" {
   name        = each.value.name
   platform_id = var.platform_id.pi1
   zone        = each.value.zone
-  service_account_id = var.service_ac
+  service_account_id = yandex_iam_service_account.vlad_sa.id
 
   resources {
     cores  = each.value.cores
