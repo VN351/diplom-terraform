@@ -18,7 +18,7 @@ resource "yandex_lb_network_load_balancer" "k8s_nlb" {
   listener {
     name        = "http"
     port        = 80
-    target_port = 31088   # NodePort вашего сервиса!
+    target_port = 31088
     protocol    = "tcp"
     external_address_spec {
       ip_version = "ipv4"
