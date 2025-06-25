@@ -21,7 +21,6 @@ resource "yandex_compute_instance" "instances" {
 
   network_interface {
     subnet_id = yandex_vpc_subnet.subnets-dip[each.value.subnet].id
-    #security_group_ids = [yandex_vpc_security_group.k8s_sg.id]
     nat       = var.nat.yes
   }
 
