@@ -24,28 +24,6 @@ variable "yc_zone" {
   default     = "ru-central1-a"
 }
 
-#variable "bucket" {
-#  description = "S3 bucket for backend"
-#  type        = string
-#}
-
-#variable "access_key" {
-#  description = "YC access key"
-#  type        = string
-#}
-
-#variable "secret_key" {
-#  description = "YC secret key"
-#  type        = string
-#  sensitive   = true
-#}
-
-#variable "service_ac" {
-#  description = "YC secret key"
-#  type        = string
-#  sensitive   = true
-#}
-
 variable "nat" {
   description = "Включение NAT"
   type = map(string)
@@ -89,7 +67,7 @@ variable "disk_type" {
   default = {
     "disk1" = "network-hdd"
     "disk2" = "network-ssd"
-    "disk3" = "network-ssd-nonreplicated" #(для незагрузочных дисков)
+    "disk3" = "network-ssd-nonreplicated"
     "disk4" = "network-ssd-io"
   }   
  }
