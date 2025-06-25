@@ -23,31 +23,4 @@ locals {
   
   k8s_nodes_ip = [for vm in values(yandex_compute_instance.instances) : vm.network_interface[0].nat_ip_address]
 
-  kubespray_inventory = <<EOT
-    [kube_control_plane]
-    %{ for name, instance in yandex_compute_instance.instances }
-    %{ if name == "k8s-master" }
-    node-${name} ansible_host=${instance.network_interface[0].nat_ip_address} ip=${instance.network_interface[0].ip_address} access_ip=${instance.network_interface[0].nat_ip_address} ansible_user=ubuntu ansible_ssh_private_key_file=/home/vlad/.ssh/id_ed25519 etcd_member_name=etcd1
-    %{ endif }
-    %{ endfor }
-
-    [etcd]
-    %{ for name, instance in yandex_compute_instance.instances }
-    %{ if name == "k8s-master" }
-    node-${name} ansible_host=${instance.network_interface[0].nat_ip_address} ip=${instance.network_interface[0].ip_address} access_ip=${instance.network_interface[0].nat_ip_address} ansible_user=ubuntu ansible_ssh_private_key_file=/home/vlad/.ssh/id_ed25519
-    %{ endif }
-    %{ endfor }
-
-    [kube_node]
-    %{ for name, instance in yandex_compute_instance.instances }
-    %{ if name != "k8s-master" }
-    node-${name} ansible_host=${instance.network_interface[0].nat_ip_address} ip=${instance.network_interface[0].ip_address} access_ip=${instance.network_interface[0].nat_ip_address} ansible_user=ubuntu ansible_ssh_private_key_file=/home/vlad/.ssh/id_ed25519
-    %{ endif }
-    %{ endfor }
-
-    [k8s_cluster:children]
-    kube_control_plane
-    kube_node
-    etcd
-  EOT
 }
