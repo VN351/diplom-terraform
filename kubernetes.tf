@@ -8,6 +8,7 @@ resource "yandex_compute_instance" "instances" {
   resources {
     cores  = each.value.cores
     memory = each.value.memory
+    core_fraction = each.value.core_fraction
   }
 
   boot_disk {

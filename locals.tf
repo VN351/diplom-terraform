@@ -11,9 +11,9 @@ locals {
   ]
   
   instances = [
-    { name = "k8s-master", zone = "ru-central1-a", subnet = "subnet-1", cores = 2, memory = 4,size = 15 },
-    { name = "k8s-worker-1", zone = "ru-central1-b", subnet = "subnet-2", cores = 2, memory = 6,size = 15 },
-    { name = "k8s-worker-2", zone = "ru-central1-d", subnet = "subnet-3", cores = 2, memory = 6,size = 15 }
+    { name = "k8s-master", zone = "ru-central1-a", subnet = "subnet-1", cores = 2, memory = 4, core_fraction = 20, size = 15 },
+    { name = "k8s-worker-1", zone = "ru-central1-b", subnet = "subnet-2", cores = 2, core_fraction = 20, memory = 6,size = 15 },
+    { name = "k8s-worker-2", zone = "ru-central1-d", subnet = "subnet-3", cores = 2, core_fraction = 20, memory = 6,size = 15 }
   ]
   
   metadata = {
