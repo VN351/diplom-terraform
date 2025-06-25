@@ -25,6 +25,8 @@ resource "yandex_compute_instance" "instances" {
   }
 
   metadata = local.metadata
+  
+  allow_stopping_for_update = true
 }
 
 data "yandex_compute_image" "ubuntu" {
