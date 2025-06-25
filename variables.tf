@@ -24,27 +24,27 @@ variable "yc_zone" {
   default     = "ru-central1-a"
 }
 
-variable "bucket" {
-  description = "S3 bucket for backend"
-  type        = string
-}
+#variable "bucket" {
+#  description = "S3 bucket for backend"
+#  type        = string
+#}
 
-variable "access_key" {
-  description = "YC access key"
-  type        = string
-}
+#variable "access_key" {
+#  description = "YC access key"
+#  type        = string
+#}
 
-variable "secret_key" {
-  description = "YC secret key"
-  type        = string
-  sensitive   = true
-}
+#variable "secret_key" {
+#  description = "YC secret key"
+#  type        = string
+#  sensitive   = true
+#}
 
-variable "service_ac" {
-  description = "YC secret key"
-  type        = string
-  sensitive   = true
-}
+#variable "service_ac" {
+#  description = "YC secret key"
+#  type        = string
+#  sensitive   = true
+#}
 
 variable "nat" {
   description = "Включение NAT"
@@ -64,6 +64,7 @@ variable "vm_os_family" {
 variable "vms_ssh_root_key" {
   description = "Путь к публичному SSH ключу"
   type        = string
+  default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC8bDGbiyUNa2k07/T9jlaRKD1gMcMT9/4wqljOvFJOD nevzorovvlad@mail.ru"
 }
 
 variable "ssh_username" {
