@@ -1,3 +1,4 @@
+/*
 locals {
   roles = [
     "storage.admin",
@@ -24,3 +25,4 @@ locals {
   k8s_nodes_ip = [for vm in values(yandex_compute_instance.instances) : vm.network_interface[0].nat_ip_address]
 
 }
+*/

@@ -1,3 +1,4 @@
+/*
 resource "yandex_vpc_network" "network-nvv" {
   name = "network-nv"
 }
@@ -10,6 +11,6 @@ resource "yandex_vpc_subnet" "subnets-dip" {
   network_id     = yandex_vpc_network.network-nvv.id
 }
 
-
+*/
 
 
