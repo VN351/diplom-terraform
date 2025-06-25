@@ -1,3 +1,4 @@
+/*
 resource "yandex_vpc_security_group" "k8s_sg" {
   name        = "k8s-vm-sg"
   description = "Security group for Kubernetes VMs"
@@ -28,7 +29,7 @@ resource "yandex_vpc_security_group" "k8s_sg" {
 
   ingress {
     protocol       = "TCP"
-    description    = "Allow HTTP within SG"
+    description    = "Allow HTTPS within SG"
     port           = 443
     predefined_target = "self_security_group"
   }
@@ -73,3 +74,4 @@ resource "yandex_vpc_security_group" "k8s_sg" {
     v4_cidr_blocks = ["0.0.0.0/0"]
   }
 }
+*/
