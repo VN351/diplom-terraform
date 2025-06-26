@@ -1,4 +1,4 @@
-
+/*
 resource "yandex_vpc_security_group" "k8s_sg" {
   name        = "k8s-vm-sg"
   description = "Security group for Kubernetes VMs"
@@ -84,3 +84,4 @@ resource "yandex_vpc_security_group" "k8s_sg" {
     to_port        = 65535
   }
 }
+*/
