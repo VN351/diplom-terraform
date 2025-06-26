@@ -1,4 +1,4 @@
-/*
+
 resource "yandex_compute_instance" "instances" {
   for_each    = { for idx, instance in local.instances : instance.name => instance }
   name        = each.value.name
@@ -33,5 +33,5 @@ resource "yandex_compute_instance" "instances" {
 data "yandex_compute_image" "ubuntu" {
     family = "${var.vm_os_family}"
 }
-*/
+
 

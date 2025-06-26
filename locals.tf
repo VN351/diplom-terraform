@@ -3,7 +3,7 @@ locals {
     "storage.admin",
     "editor"
   ]
-/*
+
   subnets = [
     { name = "subnet-1", cidr = "10.10.10.0/24", zone = "ru-central1-a" },
     { name = "subnet-2", cidr = "10.10.40.0/24", zone = "ru-central1-b" },
@@ -22,5 +22,5 @@ locals {
     }
   
   k8s_nodes_ip = [for vm in values(yandex_compute_instance.instances) : vm.network_interface[0].nat_ip_address]
-*/
+
 }
