@@ -5,73 +5,57 @@ resource "yandex_vpc_security_group" "k8s_sg" {
 
   network_id = yandex_vpc_network.network-nvv.id
 
-  # Входящие правила
-  ingress {
-    protocol       = "TCP"
-    description    = "SSH from anywhere"
-    port           = 22
-    v4_cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    protocol       = "TCP"
-    description    = "Kubernetes API from anywhere"
-    port           = 6443
-    v4_cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    protocol       = "TCP"
-    description    = "Allow HTTP within SG"
-    port           = 80
-    predefined_target = "self_security_group"
-  }
-
-  ingress {
-    protocol       = "TCP"
-    description    = "Allow HTTPS within SG"
-    port           = 443
-    predefined_target = "self_security_group"
-  }
-
-  ingress {
-    protocol       = "TCP"
-    description    = "Allow etcd within SG"
-    port             = 2379
-    predefined_target = "self_security_group"
-  }
-
-  ingress {
-    protocol       = "TCP"
-    description    = "Allow etcd within SG"
-    port             = 2380
-    predefined_target = "self_security_group"
-  }
-
-  ingress {
-    protocol       = "TCP"
-    description    = "Allow Kubelet metrics within SG"
-    port           = 10250
-    predefined_target = "self_security_group"
-  }
-  
-  ingress {
-    protocol       = "TCP"
-    description    = "Allow Kubelet read-only within SG"
-    port           = 10255
-    predefined_target = "self_security_group"
-  }
-
-  ingress {
-    description = "Health checks from NLB"
-    protocol = "TCP"
+ingress {
+    protocol          = "TCP"
+    description       = "Правило разрешает проверки доступности с диапазона адресов балансировщика нагрузки"
     predefined_target = "loadbalancer_healthchecks"
+    from_port         = 0
+    to_port           = 65535
   }
-  # Исходящие правила (по умолчанию можно оставить открытыми)
+  ingress {
+    protocol          = "ANY"
+    description       = "Правило разрешает взаимодействие мастер-узел и узел-узел внутри группы безопасности"
+    predefined_target = "self_security_group"
+    from_port         = 0
+    to_port           = 65535
+  }
+  ingress {
+    protocol       = "ANY"
+    description    = "Правило разрешает взаимодействие под-под и сервис-сервис"
+    v4_cidr_blocks = flatten(yandex_vpc_subnet.public_subnets[*].v4_cidr_blocks)
+    from_port      = 0
+    to_port        = 65535
+  }
+  ingress {
+    protocol       = "ICMP"
+    description    = "Правило разрешает отладочные ICMP-пакеты из внутренних подсетей"
+    v4_cidr_blocks = ["10.10.10.0/24", "10.10.40.0/24", "10.10.50.0/24"]
+  }
+  ingress {
+    protocol       = "TCP"
+    description    = "Правило разрешает входящий трафик из интернета на диапазон портов NodePort"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+    from_port      = 30000
+    to_port        = 32767
+  }
+  ingress {
+    protocol       = "TCP"
+    description    = "Правило разрешает доступ к Kubernetes API по порту 6443"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+    port           = 6443
+  }
+  ingress {
+    protocol       = "TCP"
+    description    = "Правило разрешает доступ к Kubernetes API по порту 443"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+    port           = 443
+  }
   egress {
     protocol       = "ANY"
-    description    = "Allow all outbound traffic"
+    description    = "Правило разрешает весь исходящий трафик"
     v4_cidr_blocks = ["0.0.0.0/0"]
+    from_port      = 0
+    to_port        = 65535
   }
 }
 */

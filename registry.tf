@@ -1,3 +1,4 @@
+/*
 resource "yandex_container_registry" "app" {
   name      = "app-registry"
   folder_id = var.yc_folder_id
@@ -6,3 +7,4 @@ resource "yandex_container_registry" "app" {
     my-label = "app-registry"
   }
 }
+*/
