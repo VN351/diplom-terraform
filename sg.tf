@@ -44,7 +44,7 @@ resource "yandex_vpc_security_group" "k8s_sg" {
   ingress {
     protocol       = "ICMP"
     description    = "ICMP from internal subnets"
-    v4_cidr_blocks = ["89.169.9.137/32", "77.37.212.183/32", "89.23.105.168/32"]
+    v4_cidr_blocks = ["89.169.9.137/32", "77.37.212.183/32", "89.23.105.168/32", "51.250.68.49/32", "62.84.122.201/32", "51.250.43.99/32"]
   }
   # ICMP для отладки из внутренних подсетей
   ingress {
