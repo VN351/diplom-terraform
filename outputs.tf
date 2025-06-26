@@ -1,4 +1,4 @@
-
+/*
 output "registry" {
   value = yandex_container_registry.app.id
 }
@@ -18,3 +18,4 @@ output "external_ips" {
     name => instance.network_interface[0].nat_ip_address
   }
 }
+*/
