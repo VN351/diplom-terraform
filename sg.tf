@@ -57,18 +57,16 @@ resource "yandex_vpc_security_group" "k8s_sg" {
 
   # HTTP/HTTPS только с балансировщика
   ingress {
-    protocol          = "TCP"
-    description       = "HTTP from load balancer"
-    predefined_target = "loadbalancer"
-    from_port         = 80
-    to_port           = 80
+    protocol       = "TCP"
+    description    = "HTTP from anywhere (not secure!)"
+    v4_cidr_blocks = ["10.10.10.0/24", "10.10.40.0/24", "10.10.50.0/24"]
+    port           = 80
   }
   ingress {
-    protocol          = "TCP"
-    description       = "HTTPS from load balancer"
-    predefined_target = "loadbalancer"
-    from_port         = 443
-    to_port           = 443
+    protocol       = "TCP"
+    description    = "HTTPS from anywhere (not secure!)"
+    v4_cidr_blocks = ["10.10.10.0/24", "10.10.40.0/24", "10.10.50.0/24"]
+    port           = 443
   }
 
   # Исходящий трафик весь разрешён (или ограничьте по необходимости)
