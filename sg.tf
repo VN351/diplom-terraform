@@ -40,6 +40,12 @@ resource "yandex_vpc_security_group" "k8s_sg" {
     to_port        = 65535
   }
 
+  # ICMP для отладки из внешних подсетей
+  ingress {
+    protocol       = "ICMP"
+    description    = "ICMP from internal subnets"
+    v4_cidr_blocks = ["89.169.9.137/32", "77.37.212.183/32", "89.23.105.168/32"]
+  }
   # ICMP для отладки из внутренних подсетей
   ingress {
     protocol       = "ICMP"
