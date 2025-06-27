@@ -1,4 +1,3 @@
-/*
 resource "yandex_iam_service_account" "vlad_sa" {
   name        = "vlad-sa"
   description = "For diplom"
@@ -11,4 +10,3 @@ resource "yandex_resourcemanager_folder_iam_member" "roles" {
   role      = each.key
   member    = "serviceAccount:${yandex_iam_service_account.vlad_sa.id}"
 }
-*/
