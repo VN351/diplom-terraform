@@ -1,7 +1,8 @@
 locals {
   roles = [
     "storage.admin",
-    "editor"
+    "editor",
+    "container-registry.editor"
   ]
 
   subnets = [
@@ -9,7 +10,7 @@ locals {
     { name = "subnet-2", cidr = "10.10.40.0/24", zone = "ru-central1-b" },
     { name = "subnet-3", cidr = "10.10.50.0/24", zone = "ru-central1-d" }
   ]
-
+/*
   instances = [
     { name = "k8s-master", zone = "ru-central1-a", subnet = "subnet-1", cores = 2, memory = 4, core_fraction = 50, size = 15 },
     { name = "k8s-worker-1", zone = "ru-central1-b", subnet = "subnet-2", cores = 2, core_fraction = 50, memory = 6,size = 15 },
@@ -22,5 +23,5 @@ locals {
     }
   
   k8s_nodes_ip = [for vm in values(yandex_compute_instance.instances) : vm.network_interface[0].nat_ip_address]
-
+*/
 }
