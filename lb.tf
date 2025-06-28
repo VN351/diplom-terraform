@@ -1,4 +1,4 @@
-/*
+
 resource "yandex_lb_target_group" "k8s_nlb_tg" {
   name      = "k8s-nlb-tg"
   region_id = "ru-central1"
@@ -37,4 +37,3 @@ resource "yandex_lb_network_load_balancer" "k8s_nlb" {
     }
   }
 }
-*/
