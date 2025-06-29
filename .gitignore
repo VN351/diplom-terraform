@@ -1,5 +1,4 @@
 personal.auto.tfvars
 backend.auto.tfvars
 .terraform.lock.hcl
-.terraform/
-.gitignore
+.terraform/*
